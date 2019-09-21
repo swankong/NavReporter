@@ -3,7 +3,7 @@
 #
 # NavParser.py
 #
-# Parse the Excel format nav report files and
+# Parse the Excel format data files and
 #
 # extract useful information.
 #
