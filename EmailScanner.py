@@ -182,7 +182,7 @@ class EmailScanner(object):
         self.__mail_scanned += 1
         print(self.__mail_scanned)
         if self.__mail_scanned > self.__MAX_NUM_SCAN:
-            raise ValueError('Scanned more than 500 mails and not find all the nav files. 扫描超过500邮件没有发现所有估值表.')
+            raise ValueError('Scanned more than 500 mails and not find all the data files. 扫描超过500邮件没有发现所有目标数据文件.')
 
     def __replicate_old_nav_files(self):
         """
