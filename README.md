@@ -13,4 +13,4 @@ A tool automatically scans emails, downloads Excel files,  parse the spreadsheet
 4. 目前程序做成了一个实例，程序会登录nav_report@163.com，下载两个邮件附件，里面是模拟的数据表，然后读取数据，填写本地的报告表格，再把报告发送回nav_report@163.com。
 5. 程序运行两种方式，假设下载代码后，放置于 NavReporter目录：
   1). 运行方法一： python_path/python.exe NavReporter ，这种运行方法会执行 NavReporter/__main__.py中的入口
-  2). 运行方法而： python_path/python.exe NavReporter/NavReporter.py，这种方法会执行NavRepoerter/NavReporter.py中的__main__入口。
+  2). 运行方法二： python_path/python.exe NavReporter/NavReporter.py，这种方法会执行NavRepoerter/NavReporter.py中的__main__入口。
