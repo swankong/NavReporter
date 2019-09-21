@@ -3,7 +3,7 @@
 #
 # EmailScanner.py
 #
-# Scan email account and download nav files.
+# Scan email account and download data files.
 #
 # All rights reserved, 2019
 #
