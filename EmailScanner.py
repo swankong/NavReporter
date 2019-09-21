@@ -85,7 +85,7 @@ class EmailScanner(object):
         return mails_, server_conn
 
     def __valid_sender(self, from_str):
-        """ 判断邮件发送者是否是净值服务商 """
+        """ 判断邮件发送者是否是数据服务商 """
         for mail_sender in self.data_providers:
             if from_str.find(mail_sender) != -1:
                 return True
