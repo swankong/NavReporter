@@ -43,6 +43,7 @@ class EmailScanner(object):
         self.pop3_user = None
         self.pop3_pass = None
         self.data_files = None
+        self.file_names = None
         self.data_providers = None
         self.date_patterns = None
         self.nav_save_path = None
@@ -55,7 +56,8 @@ class EmailScanner(object):
         self.pop3_host = mod_config.pop3_host      
         self.pop3_user = mod_config.pop3_user
         self.pop3_pass = mod_config.pop3_password
-        self.data_files = mod_config.data_files
+        self.data_files = mod_config.data_files.copy()
+        self.file_names = mod_config.data_files.copy()
         self.data_providers = mod_config.data_providers
         self.date_patterns = mod_config.date_patterns
         self.nav_save_path = mod_config.output_path  # Data file path
@@ -192,16 +194,6 @@ class EmailScanner(object):
             数据文件存在。
         :return:
         """
-        rep_date = Calendar.instance().get_prev_trading_day(ref_date=self.dt_date)  # 再向前一个交易日 T-2
-        # 遍历文件映射
-        for i, (expt_file, v) in self.nav_map.items():
-            if not v:  # 未找到的文件
-                old_file = __make_file_name(ref_date, self.date_ptn[i], self.data_files[i])
-                old_path = os.path.join(self.nav_save_path, old_file)
-                new_path = os.path.join(self.nav_save_path, expt_file)
-                shutils.copy(old_path, new_path)
-
-
         def __make_file_name(ref_date, date_ptn, file_name):
             if date_ptn == 'yyyymmdd':
                 ret_name = ''.join([file_name, ref_date.strftime('%Y%m%d'), '.xls'])
@@ -210,3 +202,15 @@ class EmailScanner(object):
             else:
                 ret_name = ''
             return ret_name
+        
+        rep_date = Calendar.instance().get_prev_trading_day(ref_date=self.dt_date)  # 再向前一个交易日 T-2
+        # 遍历文件映射
+        for i, (expt_file, v) in enumerate(self.nav_map.items()):
+            if not v:  # 未找到的文件
+                old_file = __make_file_name(rep_date, self.date_patterns[i], self.file_names[i])
+                old_path = os.path.join(self.nav_save_path, old_file)
+                new_path = os.path.join(self.nav_save_path, expt_file)
+                shutils.copy(old_path, new_path)
+
+
+
